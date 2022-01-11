@@ -1,5 +1,7 @@
 export const CompoundDashboard = () => (
-  <div className="bg-rose-500">
-    <h1 className="text-3xl font-bold underline">Hello world!</h1>
+  <div className="bg-slate-800 w-full min-h-screen	flex flex-col justify-center items-center">
+    <div>
+      <h1 className="text-3xl font-bold underline text-white">Hello world!</h1>
+    </div>
   </div>
 );
