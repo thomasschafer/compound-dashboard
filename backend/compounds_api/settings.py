@@ -61,10 +61,10 @@ WSGI_APPLICATION = 'compounds_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'exscientia',
-        'USER': os.getenv("EXSCIENTIA_DB_USER"),
-        'PASSWORD': os.getenv("EXSCIENTIA_DB_PWD"),
-        'HOST': 'localhost',
+        'NAME': 'compound_backend',
+        'USER': 'compound_backend_user',
+        'PASSWORD': os.getenv('COMPOUND_BACKEND_DB_PWD'),
+        'HOST': os.getenv('COMPOUND_BACKEND_DB_HOST'),
         'PORT': '5432',
     }
 }

@@ -9,7 +9,7 @@ def load_compounds_data(apps, schema_editor):
     AssayResult = apps.get_model("compounds", "AssayResult")
     db_alias = schema_editor.connection.alias
 
-    PATH_TO_COMPOUNDS_JSON = "../data/compounds.json"
+    PATH_TO_COMPOUNDS_JSON = "./data/compounds.json"
     with io.open(PATH_TO_COMPOUNDS_JSON, 'r', encoding="utf-8-sig") as compounds_file:
         compounds_json = json.load(compounds_file)
         for compound_data in compounds_json:
