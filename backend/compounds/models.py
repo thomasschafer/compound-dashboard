@@ -10,30 +10,30 @@ class Compound(models.Model):
     image = models.CharField(max_length=100)
 
 class AssayResult(models.Model):
-    IC50 = "IC50"
-    KI = "KI"
-    KD = "KD"
+    IC50 = 'IC50'
+    KI = 'KI'
+    KD = 'KD'
     RESULT_CHOICES = (
-        (IC50, "IC50"),
-        (KI, "Ki"),
-        (KD, "Kd"),
+        (IC50, 'IC50'),
+        (KI, 'Ki'),
+        (KD, 'Kd'),
     )
 
-    EQUAL = "EQ"
-    GREATER_THAN = "GT"
-    GREATER_THAN_OR_EQUAL = "GE"
-    LESS_THAN = "LT"
-    LESS_THAN_OR_EQUAL = "LE"
-    APPROX_EQUAL = "AE"
-    STAR = "*"
+    EQUAL = 'EQ'
+    GREATER_THAN = 'GT'
+    GREATER_THAN_OR_EQUAL = 'GE'
+    LESS_THAN = 'LT'
+    LESS_THAN_OR_EQUAL = 'LE'
+    APPROX_EQUAL = 'AE'
+    STAR = '*'
     OPERATOR_CHOICES = (
-        (EQUAL, "="),
-        (GREATER_THAN, ">"),
-        (GREATER_THAN_OR_EQUAL, ">="),
-        (LESS_THAN, "<"),
-        (LESS_THAN_OR_EQUAL, "<="),
-        (APPROX_EQUAL, "~"),
-        (STAR, "*"),
+        (EQUAL, '='),
+        (GREATER_THAN, '>'),
+        (GREATER_THAN_OR_EQUAL, '>='),
+        (LESS_THAN, '<'),
+        (LESS_THAN_OR_EQUAL, '<='),
+        (APPROX_EQUAL, '~'),
+        (STAR, '*'),
     )
 
     compound = models.ForeignKey(Compound, on_delete=models.CASCADE)
