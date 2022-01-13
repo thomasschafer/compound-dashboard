@@ -7,7 +7,7 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=compound_backend_user
-      - POSTGRES_PASSWORD="k39dka;1-a01UI"
+      - POSTGRES_PASSWORD=compound_backend_pwd
       - POSTGRES_DB=compound_backend
   backend:
     build: ./backend
@@ -17,7 +17,7 @@ services:
     ports:
       - 8000:8000
     environment:
-      - COMPOUND_BACKEND_DB_PWD="k39dka;1-a01UI"
+      - COMPOUND_BACKEND_DB_PWD=compound_backend_pwd
       - COMPOUND_BACKEND_DB_HOST=db
     depends_on:
       - db

@@ -1,12 +1,5 @@
-export interface AssayResult {
-  compound_id: number;
-  result_id: number;
-  target: string;
-  result: string;
-  operator: string;
-  value: number;
-  unit: string;
-}
+import { AssayResult, AssayResultsCarousel } from "./AssayResultsCarousel";
+import { HollowButton } from "./Buttons";
 
 export interface Compound {
   compound_id: number;
@@ -19,21 +12,12 @@ export interface Compound {
   assay_results_details: Array<AssayResult>;
 }
 
-const HollowButton = ({ text, onClick = () => {} }: { text: string; onClick?: () => void }) => (
-  <div
-    className="h-10 w-20 min-w-[5rem] rounded-full border-4 border-white cursor-pointer flex justify-center items-center pb-1 font-bold transition select-none hover:bg-white hover:text-slate-800 active:bg-blue-400 active:border-blue-400"
-    onClick={onClick}
-  >
-    {text}
-  </div>
-);
-
 const CompoundDetails = ({ compound }: { compound: Compound }) => (
-  <div className="w-full flex flex-col items-center mb-20">
+  <div className="w-full flex flex-col items-center mb-10">
     <img
       src={compound.image}
       alt={`Compound ${compound.compound_id}`}
-      className="mb-8 rounded-xl w-10/12 max-w-xs"
+      className="mb-8 rounded-xl w-10/12 max-w-[14rem]"
     />
     <div className="text-left w-full">
       <ul className="space-y-3">
@@ -87,27 +71,26 @@ export const CompoundInfo = ({
   currentCompoundId: number;
   numCompounds: number;
   updateCompoundId: (delta: number) => void;
-}) => {
-  return (
-    <div
-      className={`flex flex-col justify-center items-center w-11/12 max-w-2xl transition duration-200 delay-75 border-t-2 pt-8 ${
-        compound ? "opacity-100 scale-100" : "opacity-0 scale-95"
-      }`}
-    >
-      {compound ? (
-        <>
-          <div className="flex flex-row justify-between items-center w-full pb-8">
-            <HollowButton text="Prev" onClick={() => updateCompoundId(-1)} />
-            <span>
-              {currentCompoundId + 1} of {numCompounds}
-            </span>
-            <HollowButton text="Next" onClick={() => updateCompoundId(+1)} />
-          </div>
-          <CompoundDetails compound={compound} />
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
+}) => (
+  <div
+    className={`flex flex-col justify-center items-center w-11/12 max-w-2xl transition duration-200 delay-75 border-t-2 pt-8 mb-20 ${
+      compound ? "opacity-100 scale-100" : "opacity-0 scale-95"
+    }`}
+  >
+    {compound ? (
+      <>
+        <div className="flex flex-row justify-between items-center w-full pb-8">
+          <HollowButton text="Prev" onClick={() => updateCompoundId(-1)} />
+          <b>
+            {currentCompoundId + 1} of {numCompounds}
+          </b>
+          <HollowButton text="Next" onClick={() => updateCompoundId(+1)} />
+        </div>
+        <CompoundDetails compound={compound} />
+        <AssayResultsCarousel assayResultsDetails={compound.assay_results_details} />
+      </>
+    ) : (
+      <></>
+    )}
+  </div>
+);

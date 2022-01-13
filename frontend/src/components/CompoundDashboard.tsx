@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Compound, CompoundInfo } from "./CompoundInfo";
 
-import { BACKEND_URL } from "./constants";
-import { positiveModulus } from "./utils";
+import { BACKEND_URL } from "../constants";
+import { positiveModulus } from "../utils";
 
 export const CompoundDashboard = () => {
   const [compoundsData, setCompoundsData] = useState<Array<Compound>>([]);
@@ -13,7 +13,6 @@ export const CompoundDashboard = () => {
     const getInitialData = async () => {
       const response = await axios.get(`${BACKEND_URL}/compounds`);
       const responseCompoundsData: Array<Compound> = response.data;
-      console.log("responseCompoundsData", responseCompoundsData);
       setCompoundsData(responseCompoundsData);
     };
     getInitialData();

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { CompoundDashboard } from "./CompoundDashboard";
+import { CompoundDashboard } from "./components/CompoundDashboard";
 
 import "./index.css";
 
