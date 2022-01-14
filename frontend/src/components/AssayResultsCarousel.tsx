@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HollowButton } from "./Buttons";
 import { positiveModulus } from "../utils";
 
@@ -12,42 +12,46 @@ export interface AssayResult {
   unit: string;
 }
 
-const AssayResultInfo = ({ assayResult }: { assayResult: AssayResult }) => (
-  <div className="text-left w-full">
-    <ul className="space-y-3">
-      <li>
-        <b>Result ID:</b>
-        <br />
-        {assayResult.result_id}
-      </li>
-      <li>
-        <b>Target:</b>
-        <br />
-        {assayResult.target}
-      </li>
-      <li>
-        <b>Result:</b>
-        <br />
-        {assayResult.result}
-      </li>
-      <li>
-        <b>Operator:</b>
-        <br />
-        {assayResult.operator}
-      </li>
-      <li>
-        <b>Value:</b>
-        <br />
-        {assayResult.value}
-      </li>
-      <li>
-        <b>Unit:</b>
-        <br />
-        {assayResult.unit}
-      </li>
-    </ul>
-  </div>
-);
+const AssayResultInfo = ({ assayResult }: { assayResult: AssayResult }) => {
+  if (!assayResult) return <></>;
+
+  return (
+    <div className="text-left w-full">
+      <ul className="space-y-3">
+        <li>
+          <b>Result ID:</b>
+          <br />
+          {assayResult.result_id}
+        </li>
+        <li>
+          <b>Target:</b>
+          <br />
+          {assayResult.target}
+        </li>
+        <li>
+          <b>Result:</b>
+          <br />
+          {assayResult.result}
+        </li>
+        <li>
+          <b>Operator:</b>
+          <br />
+          {assayResult.operator}
+        </li>
+        <li>
+          <b>Value:</b>
+          <br />
+          {assayResult.value}
+        </li>
+        <li>
+          <b>Unit:</b>
+          <br />
+          {assayResult.unit}
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 export const AssayResultsCarousel = ({
   assayResultsDetails,
@@ -55,6 +59,10 @@ export const AssayResultsCarousel = ({
   assayResultsDetails: Array<AssayResult>;
 }) => {
   const [currentAssayResultIdx, setCurrentAssayResultIdx] = useState(0);
+
+  useEffect(() => {
+    setCurrentAssayResultIdx(0);
+  }, [assayResultsDetails]);
 
   const numResults = assayResultsDetails.length;
 
@@ -68,10 +76,7 @@ export const AssayResultsCarousel = ({
           <>None found</>
         ) : (
           <>
-            <AssayResultInfo
-              assayResult={assayResultsDetails[currentAssayResultIdx]}
-              key={assayResultsDetails[currentAssayResultIdx].result_id}
-            />
+            <AssayResultInfo assayResult={assayResultsDetails[currentAssayResultIdx]} />
             <div className="flex flex-row justify-between items-center w-full pt-8">
               <HollowButton
                 text="Prev"

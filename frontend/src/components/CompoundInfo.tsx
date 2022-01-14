@@ -26,7 +26,7 @@ const CompoundDetails = ({ compound }: { compound: Compound }) => (
           <br />
           {compound.compound_id}
         </li>
-        <li>
+        <li className="break-words">
           <b>Smiles:</b>
           <br />
           {compound.smiles}
@@ -50,11 +50,6 @@ const CompoundDetails = ({ compound }: { compound: Compound }) => (
           <b>Number of rings:</b>
           <br />
           {compound.num_rings}
-        </li>
-        <li>
-          <b>Image:</b>
-          <br />
-          {compound.image}
         </li>
       </ul>
     </div>
